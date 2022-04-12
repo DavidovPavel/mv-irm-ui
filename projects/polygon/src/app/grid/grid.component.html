@@ -1,0 +1,13 @@
+<irm-grid [dataSource]="dataSource" [gridConfig]="gridConfig" (changePaginatedQuery)="changePage($event)">
+  <ng-template name="incidentCreationReasonType" let-row>{{ row.incidentCreationReason.name }}
+    <button (click)="$event.stopPropagation(); testClick(row)">click</button></ng-template>
+  <ng-template name="incidentRequestStatusType" let-row>
+    <mat-select (click)="$event.stopPropagation()" [value]="row.incidentRequestStatusType">
+      <mat-option *ngFor="let item of incidentRequestStatusTypeNameKeys; let i=index" [value]="i">
+        {{ item }}
+      </mat-option>
+    </mat-select>
+  </ng-template>
+  <ng-template name="creationDate" let-row>{{ row.creationDate | date: 'dd.MM.yyyy HH:mm:ss' }}</ng-template>
+  <ng-template name="closeDate" let-row>{{ row.closeDate | date: 'dd.MM.yyyy HH:mm:ss' }}</ng-template>
+</irm-grid>

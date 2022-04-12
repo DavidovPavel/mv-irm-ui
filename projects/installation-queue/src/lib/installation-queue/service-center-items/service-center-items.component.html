@@ -1,0 +1,7 @@
+<cdk-virtual-scroll-viewport itemSize="40" class="scroll-viewport">
+  <ng-container *cdkVirtualFor="let item of filtered; let last = last">
+    <irm-installation-queue-service-center-item [item]="item" [sapId]="sapId" [quotaGroupId]="quotaGroupId">
+    </irm-installation-queue-service-center-item>
+    <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+  </ng-container>
+</cdk-virtual-scroll-viewport>

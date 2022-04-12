@@ -1,0 +1,26 @@
+@import "../../../../../common/styles/common";
+
+:host {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.file-readonly-template {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
+
+  & button {
+    color: $text-dark;
+    width: auto;
+    height: auto;
+    line-height: 1;
+    & .mat-icon {
+      font-size: 20px;
+    }
+  }
+
+  & span {
+    color: $primary;
+  }
+}

@@ -1,0 +1,48 @@
+@import "../../../../common/styles/common";
+@import "../../../../common/styles/label";
+@import "../styles/statistic";
+@import "../styles/divider";
+@import "../styles/scroll";
+
+:host {
+  flex: 1;
+  padding: 20px;
+  flex-direction: row;
+}
+
+.mat-card {
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+
+  .mat-list {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    & .mat-list-item {
+      height: auto;
+      padding: 8px 0;
+      font-size: 14px;
+      color: $text-light;
+      cursor: pointer;
+
+      &.warn {
+        background-color: $warn-light;
+      }
+
+      label {
+        @include label($warn);
+      }
+
+      .mat-icon {
+        margin-left: 16px;
+      }
+    }
+  }
+
+  &:first-child {
+    margin-right: 26px;
+  }
+}

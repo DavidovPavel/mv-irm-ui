@@ -1,0 +1,5 @@
+<label>{{ label }}</label>
+<a [href]="url" target="_blank" *ngIf="targetBlank; else elf">{{ title }} <mat-icon>open_in_new</mat-icon></a>
+<ng-template #elf
+  ><a [routerLink]="[url]" routerLinkActive="active">{{ title }}</a></ng-template
+>

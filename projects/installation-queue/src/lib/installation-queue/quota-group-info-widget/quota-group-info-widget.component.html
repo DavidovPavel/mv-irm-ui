@@ -1,0 +1,15 @@
+<mat-card [ngClass]="{ warn: !(hasQuotas$ | async) }" routerLink="/installation-queue">
+  <div fxLayout fxLayoutAlign="space-between center">
+    <div>
+      <span>Очередь установок</span>
+      <div *ngIf="!(hasQuotas$ | async)">Проверить квотирование</div>
+    </div>
+    <span>
+      <mat-icon class="green" *ngIf="hasQuotas$ | async; else warn">check_circle_outline</mat-icon>
+      <ng-template #warn>
+        <mat-icon class="warn-dark">error_outline</mat-icon>
+      </ng-template>
+    </span>
+  </div>
+</mat-card>
+

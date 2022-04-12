@@ -1,0 +1,69 @@
+<ng-container *ngFor="let field of fields">
+  <div
+    *ngIf="!field.hidden"
+    [ngSwitch]="field.type"
+    class="form-control"
+    [ngClass]="field.cssClassNames | exist"
+    [fxFlex.xs]="field.cssClassNames ? 'none' : 100"
+    [fxFlex.sm]="field.cssClassNames ? 'none' : 45"
+    [fxFlex.md]="field.cssClassNames ? 'none' : 45"
+    [fxFlex.lg]="field.cssClassNames ? 'none' : 30"
+    [fxFlex.gt-lg]="field.cssClassNames ? 'none' : 23"
+  >
+    <ng-container *ngSwitchCase="'text'">
+      <irm-text-control
+        [form]="form"
+        [name]="field.name"
+        [label]="field.label"
+        [value]="field.value"
+        [readonly]="field.readonly"
+        [hint]="field.hint"
+      ></irm-text-control>
+    </ng-container>
+    <ng-container *ngSwitchCase="'date'">
+      <irm-datepicker-control
+        [form]="form"
+        [name]="field.name"
+        [label]="field.label"
+        [value]="field.value"
+        [readonly]="field.readonly"
+        [hint]="field.hint"
+      ></irm-datepicker-control>
+    </ng-container>
+    <ng-container *ngSwitchCase="'textarea'">
+      <irm-textarea-control
+        [form]="form"
+        [name]="field.name"
+        [label]="field.label"
+        [value]="field.value"
+        [readonly]="field.readonly"
+        [hint]="field.hint"
+      ></irm-textarea-control>
+    </ng-container>
+    <ng-container *ngSwitchCase="'select'">
+      <irm-select-control
+        [form]="form"
+        [name]="field.name"
+        [label]="field.label"
+        [value]="field.value"
+        [readonly]="field.readonly"
+        [hint]="field.hint"
+        [options]="field.options"
+      ></irm-select-control>
+    </ng-container>
+    <ng-container *ngSwitchCase="'checkbox'">
+      <irm-checkbox-control
+        [form]="form"
+        [name]="field.name"
+        [label]="field.label"
+        [value]="field.value"
+        [readonly]="field.readonly"
+        [hint]="field.hint"
+      ></irm-checkbox-control>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <label>{{ field.label }}</label
+      ><span>{{ field.value }}</span>
+    </ng-container>
+  </div>
+</ng-container>

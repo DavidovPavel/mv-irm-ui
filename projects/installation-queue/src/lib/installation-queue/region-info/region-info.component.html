@@ -1,0 +1,2 @@
+<span class="city" [class.warn]="!region.hasQuotas">{{ region.name }}</span>
+<span class="date" [class.warn]="!region.hasQuotas">{{ region.hasQuotas ? getFirst(region.limits) : 'Квот нет' }}</span>

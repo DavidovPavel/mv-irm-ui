@@ -1,0 +1,69 @@
+@import "../../../../common/styles/common";
+@import "../../../../common/styles/label";
+@import "../styles/statistic";
+@import "../styles/divider";
+
+.mat-card {
+  cursor: pointer;
+}
+
+.mat-card-title {
+  font-size: 20px;
+  color: $text-dark;
+  margin-bottom: 12px;
+  font-weight: normal;
+}
+
+button {
+  width: auto;
+  height: auto;
+  line-height: normal;
+  & mat-icon {
+    color: #fff;
+  }
+}
+
+::ng-deep .mat-mini-fab .mat-button-wrapper {
+  padding: 0 !important;
+}
+
+.mat-list {
+  padding: 0;
+
+  & .mat-list-item {
+    height: 30px;
+    font-size: 11px;
+    line-height: 12px;
+    color: $text-light;
+    align-items: center;
+    padding: 0;
+
+    .mat-line {
+      height: 20px;
+    }
+
+    &.warn {
+      background-color: $warn-light;
+    }
+
+    & span:first-child {
+      width: 30px;
+    }
+
+    & span:last-child {
+      width: 60px;
+      height: 13px;
+    }
+
+    label {
+      @include label($warn);
+
+      &.warn {
+        background-color: $warn-bright;
+      }
+      &.green {
+        background-color: $success;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<ng-container *ngIf="isLoad$ | async; else enabled">
+  <ng-container *ngTemplateOutlet="controls; context: {$implicit: true}"></ng-container>
+</ng-container>
+<ng-template #enabled>
+  <ng-container *ngTemplateOutlet="controls; context: {$implicit: false}"></ng-container>
+</ng-template>
+
+<ng-template #controls let-flag>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="flag">Сохранить</button>
+
+  <button mat-raised-button *ngxPermissionsOnly="permissions.Incident_cancel" color="accent" (click)="sendTrigger(0)"
+    [disabled]="flag">Отменить запрос</button>
+
+  <button mat-raised-button *ngxPermissionsOnly="permissions.Incident_sendToSC" color="primary" (click)="sendTrigger(2)"
+    [disabled]="flag">Отправить запрос в СЦ</button>
+
+  <button mat-raised-button *ngxPermissionsOnly="permissions.Incident_complete" color="accent" (click)="sendTrigger(1)"
+    [disabled]="flag">Завершить исполнение</button>
+</ng-template>

@@ -1,0 +1,44 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "paths": {
+      "@env/*": ["projects/polygon/src/environments/*"],
+      "@irm-ui/installation-queue": [
+        "dist/installation-queue/installation-queue",
+        "dist/installation-queue"
+      ],
+      "@irm-ui/incidents": [
+        "dist/incidents/incidents",
+        "dist/incidents"
+      ],
+      "@irm-ui/common": [
+        "dist/common/common",
+        "dist/common"
+      ],
+      "handsontable": [
+        "node_modules/handsontable/dist/handsontable.min.js"
+      ]
+    },
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES5",
+    "module": "es2020",
+    "lib": ["es2018", "dom"]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "skipTemplateCodegen": true,
+    "strictTemplates": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "preserveWhitespaces": true,
+    "enableIvy": false
+  }
+}

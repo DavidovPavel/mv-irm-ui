@@ -1,0 +1,23 @@
+<irm-card-container (openState)="panelOpenState=$event" [panelOpenState]="panelOpenState">
+  <span>Данные запроса</span>
+  <div [@bodyExpansion]="!panelOpenState ? 'collapsed': 'expanded'">
+    <irm-form-factory #factory [form]="form" [fields]="fields" fxLayout="row wrap" fxLayoutGap="16px"
+      [cssClass]="{lg: 'by-three'}"></irm-form-factory>
+    <irm-incident-request-files irmIncidentUploadFile [reserveControl]="requestFiles"
+      [dataSource]="incident.requestFiles" [disabled]="disableAttachFile" (download)="download($event)"
+      (remove)="removeItem($event)"></irm-incident-request-files>
+  </div>
+  <irm-short-display [@bodyExpansion]="panelOpenState ? 'collapsed': 'expanded'" [fields]="shortFields"
+    [template]="incidentRequestFileStoresItemReadonlyTemplate" fxLayout="row wrap" fxLayoutGap="16px">
+  </irm-short-display>
+</irm-card-container>
+<ng-container *ngIf="permissions$ | async"></ng-container>
+
+<ng-template #incidentRequestFileStoresItemReadonlyTemplate let-item>
+  <span class="file-readonly-template">
+    <span>{{ item.file.name }}</span>
+    <button mat-icon-button (click)="download(item)">
+      <mat-icon>download</mat-icon>
+    </button>
+  </span>
+</ng-template>

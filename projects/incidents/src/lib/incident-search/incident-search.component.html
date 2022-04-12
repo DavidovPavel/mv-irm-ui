@@ -1,0 +1,14 @@
+<ng-container *ngIf="formChanges$ | async"></ng-container>
+<ng-container [formGroup]="form">
+  <irm-incident-extended-filter [form]="form" [ngClass]="{hidden: !showExpanded}" (apply)="apply()">
+  </irm-incident-extended-filter>
+  <div [ngClass]="{hidden: showExpanded}" class="page-container">
+    <irm-incident-filter [form]="form" [params]="params$ | async" (expanded)="showExpanded=true" (excel)="excel()"
+      (remove)="load()" (find)="search($event)">
+    </irm-incident-filter>
+    <div *ngIf="(result$ | async) as data" class="page-content">
+      <irm-incident-result-grid [data]="data" (changePaginatedQuery)="setPaginatedQuery($event)">
+      </irm-incident-result-grid>
+    </div>
+  </div>
+</ng-container>

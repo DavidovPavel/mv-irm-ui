@@ -1,0 +1,22 @@
+<ng-container *ngIf="incident$ | async as incident">
+  <ng-container *ngIf="permissions$ | async">
+    <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+      <button mat-stroked-button (click)="back()">Назад</button>
+      <irm-incident-controls [incident]="incident" [filesToDelete]="rd.filesToDelete" [form]="form">
+      </irm-incident-controls>
+    </mat-toolbar>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="20px" class="page-content">
+      <div fxFlex.lt-md="100" fxFlex.gt-sm="64">
+        <irm-incident-request-data [incident]="incident" [form]="form" #rd></irm-incident-request-data>
+        <irm-incident-departure-date [incident]="incident" [form]="form"></irm-incident-departure-date>
+        <irm-incident-comments [incident]="incident" [form]="form"></irm-incident-comments>
+      </div>
+
+      <div fxFlex.lt-md="94" fxFlex.gt-sm="33" fxFlex.gt-lg="25">
+        <irm-incident-timing [incident]="incident"></irm-incident-timing>
+        <irm-incident-znu-data [incident]="incident"></irm-incident-znu-data>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

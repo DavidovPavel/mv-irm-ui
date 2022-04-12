@@ -1,0 +1,63 @@
+<ng-template #selectableHeader name="selectableHeader">
+  <mat-checkbox
+    (change)="$event ? masterToggle(dataSource) : null"
+    [checked]="selection.hasValue() && isAllSelected(dataSource.length)"
+    [indeterminate]="selection.hasValue() && !isAllSelected(dataSource.length)"
+  >
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #selectableCell name="selectableCell" let-row>
+  <mat-checkbox
+    (click)="$event.stopPropagation()"
+    (change)="$event ? selection.toggle(row) : null"
+    [checked]="selection.isSelected(row)"
+  >
+  </mat-checkbox>
+</ng-template>
+
+<ng-template #editable name="editableCell" let-row>
+  <button mat-icon-button color="primary" [routerLink]="row.id" class="wrap-icon">
+    <mat-icon>edit</mat-icon>
+  </button>
+</ng-template>
+
+<table mat-table #table [dataSource]="dataSource">
+  <ng-container *ngFor="let cell of columns" [matColumnDef]="cell">
+    <th mat-header-cell *matHeaderCellDef [ngClass]="cell | extract: options.cssHeader">
+      <ng-container *ngIf="cell === 'select'">
+        <ng-container *ngTemplateOutlet="selectableHeader"></ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="cell | template: 'header' as headerTmpl; else headerString">
+        <ng-container *ngTemplateOutlet="headerTmpl"></ng-container>
+      </ng-container>
+      <ng-template #headerString>{{ cell | extract: options.header }}</ng-template>
+    </th>
+
+    <td mat-cell *matCellDef="let element" [ngClass]="cell | extract: options.cssCell">
+      <ng-container *ngIf="cell === 'select'">
+        <ng-container *ngTemplateOutlet="selectableCell; context: { $implicit: element }"></ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="cell === 'edit'">
+        <ng-container *ngTemplateOutlet="editable; context: { $implicit: element }"></ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="cell | template as templ; else cellValue">
+        <ng-container *ngTemplateOutlet="templ; context: { $implicit: element }"> </ng-container>
+      </ng-container>
+      <ng-template #cellValue>{{ element[cell] }}</ng-template>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns" [ngClass]="getClassProperty(row)" (dblclick)="toDetails(row.id)"></tr>
+</table>
+
+<mat-paginator
+  [length]="totalSize"
+  [pageIndex]="paginatedQuery.pageIndex"
+  [pageSize]="paginatedQuery.pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent($event)"
+></mat-paginator>

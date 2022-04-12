@@ -1,0 +1,77 @@
+<table mat-table #table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef class="for-checkbox">
+      <mat-checkbox (change)="$event ? masterToggle(dataSource) : null"
+        [checked]="selection.hasValue() && isAllSelected(dataSource.length)"
+        [indeterminate]="selection.hasValue() && !isAllSelected(dataSource.length)">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row" class="for-checkbox">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element" class="for-icon-button"><button mat-icon-button color="primary"
+        (click)="$event.stopPropagation()">
+        <mat-icon>edit</mat-icon>
+      </button></td>
+  </ng-container>
+
+  <ng-container matColumnDef="incidentNumber">
+    <th mat-header-cell *matHeaderCellDef> Инцидент </th>
+    <td mat-cell *matCellDef="let element" class="primary">{{element.incidentNumber}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="numberZNU">
+    <th mat-header-cell *matHeaderCellDef> Номер ЗНУ </th>
+    <td mat-cell *matCellDef="let element"> {{element.numberZNU}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="clientName">
+    <th mat-header-cell *matHeaderCellDef> ФИО клиента </th>
+    <td mat-cell *matCellDef="let element"> {{element.clientName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="clientPhone">
+    <th mat-header-cell *matHeaderCellDef> Телефон клиента </th>
+    <td mat-cell *matCellDef="let element"> {{element.clientPhone}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="incidentCreationReasonType">
+    <th mat-header-cell *matHeaderCellDef> Причина создания </th>
+    <td mat-cell *matCellDef="let element"> {{ element.incidentCreationReason.name }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="incidentRequestStatusType">
+    <th mat-header-cell *matHeaderCellDef> Статус запроса </th>
+    <td mat-cell *matCellDef="let element"> {{incidentRequestStatusType[element.incidentRequestStatusType]}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="serviceCenterName">
+    <th mat-header-cell *matHeaderCellDef> Сервисный центр </th>
+    <td mat-cell *matCellDef="let element"> {{element.serviceCenterName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="creationDate">
+    <th mat-header-cell *matHeaderCellDef> Дата создания </th>
+    <td mat-cell *matCellDef="let element"> {{element.creationDate | date: 'dd.MM.yyyy HH:mm:ss'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="closeDate">
+    <th mat-header-cell *matHeaderCellDef> Дата закрытия </th>
+    <td mat-cell *matCellDef="let element"> {{element.closeDate | date: 'dd.MM.yyyy HH:mm:ss'}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;" [routerLink]="row.id"></tr>
+</table>
+
+<mat-paginator [length]="totalSize" [pageIndex]="paginatedQuery.pageIndex" [pageSize]="paginatedQuery.pageSize"
+  [pageSizeOptions]="pageSizeOptions" (page)="pageEvent($event)"></mat-paginator>
+

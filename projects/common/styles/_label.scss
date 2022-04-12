@@ -1,0 +1,10 @@
+@mixin label ($bg-color) {
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 12px;
+  padding: 2px 6px;
+  text-align: center;
+  color: white;
+  background-color: $bg-color;
+}

@@ -1,0 +1,7 @@
+<ng-container *ngIf="limits?.length; else dump">
+  <span
+    [ngClass]="{accent: limit.limit===limit.reserve, warn: limit.limit===0}">{{ limit.limit }}/{{ limit.reserve }}</span>
+</ng-container>
+<ng-template #dump>
+  <span class="warn">0/0</span>
+</ng-template>

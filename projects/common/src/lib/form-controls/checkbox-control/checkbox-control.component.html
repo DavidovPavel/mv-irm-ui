@@ -1,0 +1,5 @@
+<section [formGroup]="form">
+  <mat-checkbox [formControlName]="name" [checked]="!!value">{{ label }}</mat-checkbox>
+  <label *ngIf="hint">{{ hint }}</label>
+</section>
+

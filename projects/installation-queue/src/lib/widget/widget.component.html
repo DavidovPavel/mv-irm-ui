@@ -1,0 +1,30 @@
+<mat-card [routerLink]="['/installation-queue']">
+  <mat-card-title fxLayoutAlign="space-between center">
+    <span>Очередь установок</span>
+    <button mat-mini-fab color="primary">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-list *ngIf="quotaGroups$ | async as data">
+    <mat-list-item>
+      <div matLine fxLayout fxLayoutAlign="space-between center">
+        <span>Группы квотирования на <b>{{ data.updated | date: 'dd.MM.yyyy HH:mm' }}</b></span>
+        <span class="statistic">всего: <b>{{ data.total }}</b> | с квотами:
+          <b>{{ data.withQuotas }}</b> | без квот:
+          <b>{{ data.withoutQuotas }}</b></span>
+      </div>
+    </mat-list-item>
+    <mat-divider [inset]="true"></mat-divider>
+    <ng-container *ngFor="let item of data.quotaGroups; let last = last">
+      <mat-list-item>
+        <div matLine fxLayout fxLayoutAlign="start center">
+          <span fxFlex>{{ item.name }}</span>
+          <span>
+            <label *ngIf="!item.hasQuotas">Квот нет</label>
+          </span>
+        </div>
+      </mat-list-item>
+      <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+    </ng-container>
+  </mat-list>
+</mat-card>

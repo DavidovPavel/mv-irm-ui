@@ -1,0 +1,26 @@
+@import "../../../../../common/styles/common";
+@import "../../styles/item-day";
+
+
+:host {
+  display: block;
+  padding: 2px 0 8px;
+  font-size: 10px;
+  color: $text-lighter;
+  line-height: 20px;
+  background-color: #e5e5e5;
+
+  div {
+    margin: 1px 16px;
+
+    &.calendar > span,
+    label {
+      color: $text-light;
+    }
+
+    label {
+      display: inline-block;
+      width: 95px;
+    }
+  }
+}

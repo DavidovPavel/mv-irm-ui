@@ -1,0 +1,13 @@
+@import "../../../../styles/common";
+@import "../../../../styles/form-label";
+
+:host {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+section label {
+  @include form-label($text-light);
+  display: inline-block;
+}

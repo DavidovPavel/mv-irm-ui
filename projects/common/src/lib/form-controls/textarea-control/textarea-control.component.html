@@ -1,0 +1,7 @@
+<mat-form-field [formGroup]="form">
+  <mat-label>{{ label }}</mat-label>
+  <textarea matInput [formControlName]="name" [readonly]="readonly" [matTextareaAutosize]="true">{{ value }}</textarea>
+  <mat-error *ngIf="!isValid">
+    <app-error-info [hint]="hint" [control]="control"></app-error-info>
+  </mat-error>
+</mat-form-field>

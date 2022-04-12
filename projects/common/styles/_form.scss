@@ -1,0 +1,45 @@
+mat-form-field {
+  font-size: 16px !important;
+  color: #000000;
+  letter-spacing: 0.25px !important;
+}
+
+textarea {
+  line-height: 18px;
+}
+
+input,
+.mat-checkbox-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button {
+  font-weight: normal !important;
+}
+
+.mat-checkbox-frame {
+  border-color: #c6c6c6;
+}
+
+.mat-form-field-no-underline {
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0;
+  }
+}
+
+.full-width {
+  width: 100%;
+
+  .mat-form-field {
+    width: 100%;
+  }
+}
+
+.half-width {
+  width: 50%;
+}
+
+:focus {
+  outline: none;
+}

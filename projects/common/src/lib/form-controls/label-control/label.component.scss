@@ -1,0 +1,19 @@
+@import "../../../../styles/common";
+@import "../../../../styles/form-label";
+
+:host {
+  display: block;
+
+  label {
+    @include form-label($text-lighter);
+    display: inline-block;
+  }
+
+  span {
+    display: block;
+    font-weight: 500;
+    font-size: 13px;
+    color: $text-light;
+    margin-bottom: 16px;
+  }
+}

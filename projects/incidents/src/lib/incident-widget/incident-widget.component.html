@@ -1,0 +1,11 @@
+<div fxLayoutAlign="space-between center" fxLayoutGap="8px" *ngIf="stats$ | async as stats">
+  <div class="stat new">
+    <span>{{ stats.numberNewRequests }}</span>
+    <div class="mat-small">новых</div>
+  </div>
+  <div class="stat work">
+    <span>{{ stats.numberInProgressRequests }}</span>
+    <div class="mat-small">в работе</div>
+  </div>
+  <div>&nbsp;</div>
+</div>

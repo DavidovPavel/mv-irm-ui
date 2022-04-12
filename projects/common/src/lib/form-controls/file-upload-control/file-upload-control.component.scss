@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  margin-bottom: 20px;
+  & > div {
+    margin-top: 10px;
+  }
+}
+
+.upload-error {
+  font-size: 75%;
+  text-align: right;
+}

@@ -1,0 +1,232 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "installation-queue": {
+      "projectType": "library",
+      "root": "projects/installation-queue",
+      "sourceRoot": "projects/installation-queue/src",
+      "prefix": "irm-installation-queue",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/installation-queue/tsconfig.lib.json",
+            "project": "projects/installation-queue/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/installation-queue/ng-package.json",
+              "tsConfig": "projects/installation-queue/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/installation-queue/src/test.ts",
+            "tsConfig": "projects/installation-queue/tsconfig.spec.json",
+            "karmaConfig": "projects/installation-queue/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/installation-queue/tsconfig.lib.json",
+              "projects/installation-queue/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "polygon": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/polygon",
+      "sourceRoot": "projects/polygon/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/polygon",
+            "index": "projects/polygon/src/index.html",
+            "main": "projects/polygon/src/main.ts",
+            "polyfills": "projects/polygon/src/polyfills.ts",
+            "tsConfig": "projects/polygon/tsconfig.app.json",
+            "aot": true,
+            "assets": ["projects/polygon/src/favicon.ico", "projects/polygon/src/assets"],
+            "styles": ["projects/polygon/src/styles.scss"],
+            "scripts": [],
+            "allowedCommonJsDependencies": ["handsontable"]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/polygon/src/environments/environment.ts",
+                  "with": "projects/polygon/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "polygon:build"
+
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "polygon:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "polygon:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/polygon/src/test.ts",
+            "polyfills": "projects/polygon/src/polyfills.ts",
+            "tsConfig": "projects/polygon/tsconfig.spec.json",
+            "karmaConfig": "projects/polygon/karma.conf.js",
+            "assets": ["projects/polygon/src/favicon.ico", "projects/polygon/src/assets"],
+            "styles": ["projects/polygon/src/styles.scss"],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/polygon/tsconfig.app.json",
+              "projects/polygon/tsconfig.spec.json",
+              "projects/polygon/e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/polygon/e2e/protractor.conf.js",
+            "devServerTarget": "polygon:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "polygon:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "incidents": {
+      "projectType": "library",
+      "root": "projects/incidents",
+      "sourceRoot": "projects/incidents/src",
+      "prefix": "irm-incident",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/incidents/tsconfig.lib.json",
+            "project": "projects/incidents/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/incidents/ng-package.json",
+              "tsConfig": "projects/incidents/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/incidents/src/test.ts",
+            "tsConfig": "projects/incidents/tsconfig.spec.json",
+            "karmaConfig": "projects/incidents/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/incidents/tsconfig.lib.json", "projects/incidents/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "common": {
+      "projectType": "library",
+      "root": "projects/common",
+      "sourceRoot": "projects/common/src",
+      "prefix": "irm",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/common/tsconfig.lib.json",
+            "project": "projects/common/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/common/ng-package.json",
+              "tsConfig": "projects/common/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/common/src/test.ts",
+            "tsConfig": "projects/common/tsconfig.spec.json",
+            "karmaConfig": "projects/common/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/common/tsconfig.lib.json", "projects/common/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "polygon"
+}

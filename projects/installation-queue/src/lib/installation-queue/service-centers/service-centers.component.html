@@ -1,0 +1,19 @@
+<mat-list *ngIf="dataSource">
+  <mat-list-item [style.paddingTop.px]="5">
+    <div matLine fxLayout fxLayoutAlign="space-between baseline">
+      <mat-form-field>
+        <mat-label>Сервисные центры</mat-label>
+        <input type="text" placeholder="Введите наименование" matInput [formControl]="nameControl">
+        <button mat-icon-button matSuffix (click)="nameControl.setValue('')">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+      <span class="statistic"><span (click)="filtering(0)">всего</span>:&nbsp;<b>{{ dataSource.total }}</b> | <span
+          class="success" (click)="filtering(1)">с квотами</span>:&nbsp;<b>{{ dataSource.withQuotas }}</b> | <span
+          class="warn" (click)="filtering(2)">без квот</span>:&nbsp;<b>{{ dataSource.withoutQuotas }}</b></span>
+    </div>
+  </mat-list-item>
+  <mat-divider [inset]="true"></mat-divider>
+  <irm-installation-queue-service-center-items [dataSource]="dataSource.serviceCenters" [filter]="filter" [sapId]="sapId" [quotaGroupId]="quotaGroupId">
+  </irm-installation-queue-service-center-items>
+</mat-list>

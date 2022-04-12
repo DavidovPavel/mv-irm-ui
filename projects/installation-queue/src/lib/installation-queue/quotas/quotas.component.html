@@ -1,0 +1,15 @@
+<div class="calendar">
+  <label>&nbsp;</label>
+  <ng-container *ngFor="let day of days$ | async">
+    <span>{{ day | date: "dd.MM" }}</span>
+  </ng-container>
+</div>
+
+<ng-container *ngFor="let region of regions">
+  <div>
+    <label>{{ region.name }}</label>
+    <ng-container *ngFor="let day of days$ | async">
+      <irm-installation-queue-region [day]="day" [limits]="region.limits"></irm-installation-queue-region>
+    </ng-container>
+  </div>
+</ng-container>

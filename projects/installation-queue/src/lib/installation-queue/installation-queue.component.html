@@ -1,0 +1,31 @@
+<mat-card fxFlex="35">
+  <mat-list *ngIf="quotaGroups$ | async as data">
+    <mat-list-item>
+      <div matLine fxLayout fxLayoutAlign="space-between center">
+        <span>Группы квотирования</span>
+        <span class="statistic">всего: <b>{{ data.total }}</b> | с квотами:
+          <b>{{ data.withQuotas }}</b> | без квот:
+          <b>{{ data.withoutQuotas }}</b></span>
+      </div>
+    </mat-list-item>
+    <mat-divider [inset]="true"></mat-divider>
+    <cdk-virtual-scroll-viewport itemSize="40" class="scroll-viewport">
+      <ng-container *cdkVirtualFor="let item of data.quotaGroups; let last = last">
+        <mat-list-item [ngClass]="item.id === quotaGroupId ? 'warn' : 'primary'" (click)="showServiceCenters(item.id)">
+          <div matLine fxLayout fxLayoutAlign="start center">
+            <span fxFlex>{{ item.name }}</span>
+            <label *ngIf="!item.hasQuotas">Квот нет</label>
+            <mat-icon>chevron_right</mat-icon>
+          </div>
+        </mat-list-item>
+        <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+      </ng-container>
+    </cdk-virtual-scroll-viewport>
+  </mat-list>
+</mat-card>
+
+<mat-card fxFlex="65" [style.paddingTop.px]="0">
+  <irm-installation-queue-service-centers [dataSource]="serviceCenters$ | async" [sapId]="sapId"
+    [quotaGroupId]="quotaGroupId">
+  </irm-installation-queue-service-centers>
+</mat-card>

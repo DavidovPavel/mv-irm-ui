@@ -1,0 +1,59 @@
+@import "../../../../../common/styles/common";
+@import "../../../../../common/styles/label";
+
+%size-line {
+  font-size: 16px;
+  line-height: 19px;
+}
+
+:host {
+  & .mat-card {
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 14px;
+    flex: 1;
+
+    &.warn {
+      background-color: $warn-light;
+      border: 1px solid $red-dark;
+
+      & > div > div {
+        & > span {
+          @extend %size-line;
+          color: $red-alt;
+        }
+        & > div {
+          margin-top: 6px;
+          font-size: 24px;
+          line-height: 23px;
+          color: $red-dark;
+        }
+      }
+    }
+
+    & > div {
+      &:first-child {
+        & > div {
+          @extend %size-line;
+          color: #000;
+        }
+
+        & > span {
+          font-size: 48px;
+          color: $text-dark;
+          line-height: 56px;
+        }
+        & mat-icon {
+          font-size: 36px;
+          width: 36px;
+          height: 36px;
+        }
+      }
+
+      &:last-child {
+        line-height: 20px;
+        color: $text-light;
+      }
+    }
+  }
+}

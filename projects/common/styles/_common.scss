@@ -1,0 +1,28 @@
+@import "~@angular/material/theming";
+@import "palette";
+
+$success: mat-color($irm-success, 500);
+$primary: mat-color($irm-primary, 500);
+$accent: mat-color($irm-accent, 500);
+$accent-light: mat-color($irm-accent, 50);
+$warn: mat-color($irm-warn, 500);
+$warn-light: mat-color($irm-warn, 50);
+$warn-bright: mat-color($irm-warn, A400);
+$warn-alt: mat-color($irm-warn, 200);
+
+$red-dark: #7f3737;
+$red-alt: #985959;
+$yellow: #fff8ba;
+
+$divider: #e3e3e3;
+
+$text-dark: #495057;
+$text-light: rgba(0, 0, 0, 0.6);
+$text-lighter: rgba(0, 0, 0, 0.4);
+
+$bg-hover: rgba(0, 0, 0, 0.04);
+
+$blue_hover: #039be5;
+$blue_active: #0288d1;
+
+

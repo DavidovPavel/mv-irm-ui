@@ -1,0 +1,52 @@
+@import './common';
+
+@mixin statusTile {
+  margin: 0 0 20px;
+  cursor: pointer;
+
+  .mat-card-title {
+    font-size: 20px;
+    color: $text-dark;
+    margin-bottom: 12px;
+    font-weight: normal;
+
+    ::ng-deep .mat-mini-fab .mat-button-wrapper {
+      padding: 0 !important;
+    }
+
+    button {
+      width: auto;
+      height: auto;
+      line-height: normal;
+      & mat-icon {
+        color: #fff;
+      }
+    }
+  }
+
+  .mat-card-content {
+    .in-new-status {
+      color: $success;
+    }
+    .in-work-status {
+      color: $primary;
+    }
+    .expired-status {
+      color: $warn;
+    }
+
+    & div,
+    span {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    & > div > span {
+      font-size: 24px;
+    }
+
+    & > p {
+      line-height: 12px;
+    }
+  }
+}

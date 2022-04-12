@@ -1,0 +1,28 @@
+<ng-container *ngFor="let field of fields">
+  <ng-container *ngIf="field.value">
+    <div [ngClass]="field.cssClassNames || ''">
+      <label>{{ field.label }}:</label>
+      <ng-container *ngIf="field.type === ControlType.file && asArray(field.value); else link">
+        <ng-container *ngFor="let item of field.value">
+          <ng-container *ngTemplateOutlet="template; context: { $implicit: item }"></ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #link>
+    <ng-container *ngIf="isArray(field.value); else span">
+      <a
+        *ngIf="field.value[2] !== '_blank'; else blank"
+        [routerLink]="getUrl(field)"
+        routerLinkActive="router-link-active"
+        >{{ getValue(field) }}</a
+      >
+      <ng-template #blank>
+        <a [href]="getUrl(field)" target="_blank">{{ getValue(field) }}</a>
+      </ng-template>
+    </ng-container>
+  </ng-template>
+  <ng-template #span
+    ><span>{{ field.value }}</span></ng-template
+  >
+</ng-container>

@@ -1,0 +1,12 @@
+<mat-expansion-panel [expanded]="true" #ep=matExpansionPanel (opened)="opened()" (closed)="closed(ep)" hideToggle="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <ng-content select="span"></ng-content>
+    </mat-panel-title>
+    <mat-panel-description>
+      <mat-icon color="primary" *ngIf="!panelOpenState">add</mat-icon>
+      <mat-icon color="primary" *ngIf="panelOpenState">remove</mat-icon>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <ng-content></ng-content>
+</mat-expansion-panel>

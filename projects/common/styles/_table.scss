@@ -1,0 +1,38 @@
+@import "./common";
+
+table {
+  width: 100%;
+
+  tr:hover {
+    & > td {
+      background-color: $bg-hover;
+      cursor: pointer;
+    }
+  }
+
+  th,
+  td {
+    padding: 12px;
+    line-height: 16px;
+  }
+
+  th {
+    font-size: 14px !important;
+    color: $text-light !important;
+  }
+
+  td {
+    color: $text-dark !important;
+    &.primary {
+      font-weight: 500;
+    }
+  }
+}
+
+tr.red {
+  background-color: #fde1e1;
+}
+
+tr.yellow {
+  background-color: #fff7e7;
+}

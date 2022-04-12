@@ -1,0 +1,20 @@
+<button mat-button color="primary" (click)="show()" class="full-width" [disabled] = "field.readonly || field.disabled">
+  <span fxLayout fxLayoutAlign="space-between center">
+    <label>{{ field.label }}</label>
+    <mat-icon>cloud_upload</mat-icon>
+  </span>
+</button>
+<input type="file" #fileUploadInput multiple="multiple" value="upload_file" [style.display]="'none'"
+  (change)="fileUploadHandler($event)" />
+
+<mat-error class="upload-error">
+  <mat-error *ngIf="hasError('required')">{{ field.hint }}</mat-error>
+  <mat-error>{{ notifyError }}</mat-error>
+</mat-error>
+
+<irm-list-control [template]="fileTemplate" [items]="files" (remove)="removeFile($event)"></irm-list-control>
+<irm-list-control [template]="template" [items]="items" (remove)="removeItem($event)" [readonly]="field.readonly || field.disabled"></irm-list-control>
+
+<ng-template #fileTemplate let-item>
+  <div>{{ item.name }}</div>
+</ng-template>

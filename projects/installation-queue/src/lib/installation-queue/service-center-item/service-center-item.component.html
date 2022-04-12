@@ -1,0 +1,20 @@
+<mat-list-item>
+  <div matLine>
+    <div fxLayoutAlign="spance-between center" (click)="expand()" [style.margin]="'0 16px 6px'">
+      <span fxFlex>{{ item.name }}</span>
+      <label *ngIf="!item.hasQuotas">Квот нет</label>
+      <mat-icon *ngIf="item.isExpand; else more">expand_less</mat-icon>
+      <ng-template #more>
+        <mat-icon>expand_more</mat-icon>
+      </ng-template>
+    </div>
+    <ng-container *ngIf="serviceCenterRegions$ | async"></ng-container>
+    <div *ngIf="item.regions; else spinner" [ngClass]="{collapse: !item.isExpand}" fxLayout="column">
+      <irm-quotas-info [regions]="item.regions.regions"></irm-quotas-info>
+      <irm-quotas [regions]="item.regions.regions"></irm-quotas>
+    </div>
+    <ng-template #spinner>
+      <mat-spinner [diameter]="16" *ngIf="item.isExpand"></mat-spinner>
+    </ng-template>
+  </div>
+</mat-list-item>

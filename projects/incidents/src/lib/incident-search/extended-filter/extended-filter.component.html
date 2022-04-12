@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-title>Расширенный фильтр</mat-card-title>
+
+  <div fxLayout fxLayoutGap="20px" [style.paddingTop.px]="10">
+    <div fxLayout="row wrap" fxLayoutGap="16px" fxFlex="grow" [formGroup]="form">
+
+      <irm-infinity-scroll-select class="full-width" [form]="form" label="Канал продаж" controlName="salesChannel">
+      </irm-infinity-scroll-select>
+
+      <irm-infinity-scroll-select class="full-width" [form]="form" label="Контрагент" controlName="serviceCompanyId">
+      </irm-infinity-scroll-select>
+
+      <irm-infinity-scroll-select class="full-width" [form]="form" label="Город" controlName="cityId">
+      </irm-infinity-scroll-select>
+
+      <irm-infinity-scroll-select class="full-width" [form]="form" label="Магазин" controlName="shopId">
+      </irm-infinity-scroll-select>
+
+      <irm-infinity-scroll-select class="full-width" [form]="form" label="Бренд" controlName="brand">
+      </irm-infinity-scroll-select>
+
+      <irm-infinity-scroll-select class="full-width" [form]="form" label="Вина СЦ" controlName="blameServiceCenterType">
+      </irm-infinity-scroll-select>
+
+    </div>
+
+    <div class="data-block">
+      <div>
+        <label>Дата создания</label>
+        <irm-form-factory [form]="form" [fields]="creationFields" fxLayout fxLayoutGap="16px"></irm-form-factory>
+      </div>
+      <div>
+        <label>Дата закрытия</label>
+        <irm-form-factory [form]="form" [fields]="closeFields" fxLayout fxLayoutGap="16px"></irm-form-factory>
+      </div>
+    </div>
+  </div>
+  <p>
+    <button mat-stroked-button color="primary" (click)="clearFilter()">Сбросить фильтр</button>
+    &nbsp;&nbsp;
+    <button mat-raised-button color="primary" (click)="applyFilter()">Применить фильтр</button>
+  </p>
+</mat-card>

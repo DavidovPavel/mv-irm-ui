@@ -1,0 +1,43 @@
+<mat-toolbar>
+  <mat-form-field fxFlex="50%">
+    <input matInput placeholder="Искать запрос по номеру претензии, ЗНУ, Интернет-заказа, заказа TS"
+      [formControl]="superSearch" (keyup.enter)="complicatedSearch()" />
+    <button mat-button matSuffix mat-icon-button aria-label="Искать" (click)="complicatedSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</mat-toolbar>
+
+<div class="wrap">
+  <ng-container [formGroup]="form">
+    <div fxLayout fxLayoutGap="20px" fxLayoutAlign="space-between center">
+
+      <div fxLayout fxLayoutGap="20px" fxLayoutAlign="start center">
+        <mat-form-field>
+          <mat-label>Статус запроса</mat-label>
+          <mat-select #status formControlName="incidentRequestStatusType" multiple>
+            <mat-option *ngFor="let item of activeRequestStatus" [value]="item.Id">{{ item.Name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <irm-infinity-scroll-select #service [form]="form" label="Сервисный центр" controlName="serviceCenterId">
+        </irm-infinity-scroll-select>
+        <button mat-stroked-button color="primary" (click)="toExpanded()" [matBadgeHidden]="!chips.length"
+          [matBadge]="chips.length" matBadgeSize="small" matBadgeColor="accent">
+          <mat-icon>filter_list</mat-icon>
+          &nbsp;
+          <span>Расширенный фильтр</span>
+        </button>
+      </div>
+
+      <button mat-stroked-button color="primary" (click)="startExcel()">
+        <mat-icon>import_export</mat-icon><span>Экспорт в Excel</span>
+      </button>
+    </div>
+  </ng-container>
+
+  <mat-chip-list>
+    <mat-chip *ngFor="let chip of chips" [selectable]="false" [removable]="true" (removed)="removeChip(chip)"
+      color="primary" selected>{{ chip.label }}<mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+</div>

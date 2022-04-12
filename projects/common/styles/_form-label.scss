@@ -1,0 +1,6 @@
+
+@mixin form-label($color) {
+  font-size: 11px;
+  line-height: 12px;
+  color: $color;
+}

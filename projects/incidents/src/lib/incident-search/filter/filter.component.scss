@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  padding: 0 16px;
+}
+
+.mat-chip-list {
+  display: block;
+  min-height: 36px;
+  padding-bottom: 12px;
+}
+
+.mat-chip {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 10px;
+  min-height: 18px;
+
+  & .mat-icon {
+    font-size: 12px;
+    width: auto;
+    height: auto;
+  }
+}
+
+.wrap {
+  padding: 0 16px;
+}

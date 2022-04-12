@@ -1,0 +1,12 @@
+@import "../../../../../common/styles/common";
+@import "../../styles/item-day";
+
+.accent {
+  background-color: $yellow;
+  color: $text-dark;
+}
+
+.warn {
+  background-color: $warn;
+  color: #fff;
+}

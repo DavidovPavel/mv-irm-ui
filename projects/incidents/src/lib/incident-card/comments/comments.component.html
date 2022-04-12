@@ -1,0 +1,22 @@
+<mat-tab-group>
+  <mat-tab label="Комментарии">
+    <irm-incident-comment-list [form]="form" [dataSource]="incident.comments" [disabled]="disabledSendComment"
+    (send)="addComment($event)">
+  </irm-incident-comment-list>
+  </mat-tab>
+  <mat-tab label="Файлы ( {{ incident.commentFiles.length }} )">
+    <irm-incident-file-list [dataSource]="incident.commentFiles" [reserveControl]="commentFiles"
+    [disabled]="disableAttachFile" (add)="addFiles($event)" (remove)="removeFileStores($event)"
+    (download)="download($event)">
+  </irm-incident-file-list>
+  </mat-tab>
+</mat-tab-group>
+
+<ng-template #incidentRequestFileStoresItemTemplate let-item>
+  <div class="file-template">
+    <span>{{ item.file.name }}</span>
+    <button mat-icon-button (click)="download(item)" color="primary">
+      <mat-icon>download</mat-icon>
+    </button>
+  </div>
+</ng-template>

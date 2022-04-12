@@ -1,0 +1,22 @@
+@import "../../../../common/styles/common";
+@import "../../../../common/styles/label";
+
+.mat-list-item {
+  height: auto;
+  padding: 8px 0;
+  font-size: 14px;
+  color: $text-light;
+  cursor: pointer;
+
+  &.warn {
+    background-color: $warn-light;
+  }
+
+  label {
+    @include label($warn);
+  }
+
+  .mat-icon {
+    margin-left: 16px;
+  }
+}
